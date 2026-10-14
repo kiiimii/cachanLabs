@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="postopt-flow-title postopt-flow-desc" id="algorithm_postoptimal-root">
+        <title id="postopt-flow-title">Алгоритм послеоптимизационного анализа</title>
+        <desc id="postopt-flow-desc">Блок-схема показывает ввод и проверку модели, итерации симплекс-метода, анализ оптимального базиса и вывод результатов.</desc>
+        <defs>
+      <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Serif:ital@0;1&amp;family=Noto+Sans+KR:wght@400;500;600&amp;family=Noto+Serif+KR:wght@400&amp;family=Noto+Sans+TC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400&amp;display=swap');
+      #algorithm_postoptimal-root { color: #111; font-family: Arial, sans-serif; }
+      #algorithm_postoptimal-root .diagram-container { width: 100%; overflow-x: auto; }
+      #algorithm_postoptimal-root .diagram-container { overflow-x: visible; }
+      #algorithm_postoptimal-root .node-name { font: 600 12px Arial, sans-serif; fill: #111; text-anchor: middle; }
+      #algorithm_postoptimal-root .sub { font: 9px "Liberation Mono", monospace; fill: #444; text-anchor: middle; }
+      #algorithm_postoptimal-root .edge { fill: none; stroke: #444; stroke-width: 1.4; marker-end: url(#algorithm_postoptimal-arrow); }
+      #algorithm_postoptimal-root .label { font: 8px "Liberation Mono", monospace; fill: #111; text-anchor: middle; letter-spacing: .06em; }</style>
+          <marker id="algorithm_postoptimal-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#444"/></marker>
+          <marker id="algorithm_postoptimal-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#111"/></marker>
+          <marker id="algorithm_postoptimal-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#444"/></marker>
+        </defs>
+        <rect width="960" height="600" fill="#fff"/>
+
+        <!-- Connectors are drawn before nodes. -->
+        <line class="edge" x1="480" y1="72" x2="480" y2="90"/>
+        <line class="edge" x1="480" y1="142" x2="480" y2="166"/>
+        <line class="edge" x1="620" y1="210" x2="720" y2="210"/>
+        <line class="edge" x1="480" y1="254" x2="480" y2="274"/>
+        <line class="edge" x1="480" y1="326" x2="480" y2="346"/>
+        <line class="edge" x1="340" y1="390" x2="260" y2="390"/>
+        <path class="edge" d="M 160 414 L 160 460 Q 160 468 168 468 L 472 468 Q 480 468 480 460 L 480 434"/>
+        <line class="edge" x1="620" y1="390" x2="700" y2="390"/>
+        <line class="edge" x1="800" y1="414" x2="800" y2="458"/>
+
+        <!-- Connector labels with opaque masks and visible stroke gaps. -->
+        <rect x="650" y="190" width="42" height="12" rx="2" fill="#fff"/>
+        <text class="label" x="671" y="199">НЕТ</text>
+        <rect x="492" y="256" width="36" height="12" rx="2" fill="#fff"/>
+        <text class="label" x="510" y="265">ДА</text>
+        <rect x="282" y="370" width="42" height="12" rx="2" fill="#fff"/>
+        <text class="label" x="303" y="379">НЕТ</text>
+        <rect x="642" y="370" width="36" height="12" rx="2" fill="#fff"/>
+        <text class="label" x="660" y="379">ДА</text>
+
+        <!-- Start. -->
+        <rect x="380" y="24" width="200" height="48" rx="24" fill="#fff" stroke="#111" stroke-width="1.4"/>
+        <text class="node-name" x="480" y="53">Начало</text>
+
+        <!-- Input. -->
+        <rect x="310" y="90" width="340" height="52" rx="6" fill="#fff" stroke="#111" stroke-width="1.2"/>
+        <text class="node-name" x="480" y="113">Ввод параметров модели</text>
+        <text class="sub" x="480" y="129">c, A, b · названия продуктов и ресурсов</text>
+
+        <!-- Validation decision. -->
+        <polygon points="480,166 620,210 480,254 340,210" fill="#f1f1f1" stroke="#111" stroke-width="1.2"/>
+        <text class="node-name" x="480" y="207">Данные корректны?</text>
+        <text class="sub" x="480" y="222">размеры · конечность · знак</text>
+
+        <!-- Error terminal. -->
+        <rect x="720" y="186" width="180" height="48" rx="24" fill="#fff" stroke="#111" stroke-width="1.2"/>
+        <text class="node-name" x="810" y="207">Сообщение об ошибке</text>
+        <text class="sub" x="810" y="222">завершение</text>
+
+        <!-- Tableau. -->
+        <rect x="310" y="274" width="340" height="52" rx="6" fill="#fff" stroke="#111" stroke-width="1.2"/>
+        <text class="node-name" x="480" y="297">Построение симплекс-таблицы</text>
+        <text class="sub" x="480" y="313">базис из добавочных переменных</text>
+
+        <!-- Optimality decision. -->
+        <polygon points="480,346 620,390 480,434 340,390" fill="#f1f1f1" stroke="#111" stroke-width="1.2"/>
+        <text class="node-name" x="480" y="387">План оптимален?</text>
+        <text class="sub" x="480" y="402">все Δj ≤ 0</text>
+
+        <!-- Pivot loop. -->
+        <rect x="60" y="366" width="200" height="48" rx="6" fill="#fff" stroke="#111" stroke-width="1.2"/>
+        <text class="node-name" x="160" y="387">Симплекс-переход</text>
+        <text class="sub" x="160" y="402">столбец · строка · пересчёт</text>
+
+        <!-- Post-optimal analysis. -->
+        <rect x="700" y="366" width="200" height="48" rx="6" fill="#e8e8e8" stroke="#111" stroke-width="1.5"/>
+        <text class="node-name" x="800" y="387">Анализ базиса</text>
+        <text class="sub" x="800" y="402">цены · оценки · интервалы</text>
+
+        <!-- Result terminal. -->
+        <rect x="700" y="458" width="200" height="52" rx="26" fill="#fff" stroke="#111" stroke-width="1.4"/>
+        <text class="node-name" x="800" y="481">Вывод результата</text>
+        <text class="sub" x="800" y="497">таблицы и пояснения</text>
+
+        <!-- Legend strip. -->
+        <line x1="40" y1="542" x2="920" y2="542" stroke="#bbb" stroke-width="0.8"/>
+        <text x="40" y="566" fill="#444" font-size="8" font-family="Liberation Mono, monospace" letter-spacing="0.12em">УСЛОВНЫЕ ОБОЗНАЧЕНИЯ</text>
+        <rect x="260" y="553" width="70" height="24" rx="12" fill="#fff" stroke="#111"/>
+        <text class="sub" x="295" y="569">начало / конец</text>
+        <rect x="420" y="553" width="70" height="24" rx="4" fill="#fff" stroke="#111"/>
+        <text class="sub" x="455" y="569">операция</text>
+        <polygon points="620,551 660,565 620,579 580,565" fill="#f1f1f1" stroke="#111"/>
+        <text class="sub" x="620" y="568">условие</text>
+      </svg>
